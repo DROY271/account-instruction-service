@@ -8,3 +8,9 @@ The operations are:
 3. Get the current instructions for the account.
 
 To be able to work properly, when a new account is created, default contribution and fund split instructions must be set. This also implies that this service needs to maintain the plan & fund details.
+
+
+## Entity Model
+![Entity Model](account-instruction-er-model.png)
+
+

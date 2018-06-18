@@ -12,3 +12,5 @@ To be able to work properly, when a new account is created, default contribution
 
 ## Entity Model
 ![Entity Model](account-instruction-er-model.png)
+
+

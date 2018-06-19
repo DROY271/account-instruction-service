@@ -15,3 +15,8 @@ buildNumber.properties
 .project
 .classpath
 .settings/
+
+# Avoid idea files
+.idea/
+*.iml
+

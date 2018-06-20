@@ -1,0 +1,39 @@
+package com.cognizant.samples.accountinstructions.dao;
+
+import com.cognizant.samples.accountinstructions.plan.Fund;
+import com.cognizant.samples.accountinstructions.plan.Plan;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcOperations;
+
+import java.util.LinkedHashSet;
+import java.util.List;
+
+public class PlanDAO {
+
+    static final String GET_PLAN_WITH_ID = "SELECT * FROM plan WHERE id = ?";
+
+    static final String GET_FUNDS_FOR_PLAN = "SELECT f.id,f.name FROM plan_fund pf\n" +
+            "INNER JOIN fund f ON pf.fund_id=f.id\n" +
+            "WHERE pf.plan_id= ?";
+
+    private JdbcOperations jdbcOperations;
+
+    PlanDAO(JdbcOperations o) {
+        this.jdbcOperations = o;
+    }
+
+    public Plan getPlan(String planId) {
+        List<Plan> plans = jdbcOperations.query(GET_PLAN_WITH_ID, new BeanPropertyRowMapper<>(Plan.class), planId);
+        Plan plan = (plans.isEmpty()) ? null : plans.get(0);
+        if (plan != null) {
+            plan.setFunds(new LinkedHashSet<>(getFunds(planId)));
+        }
+        return plan;
+    }
+
+    private List<Fund> getFunds(String planId) {
+        return jdbcOperations.query(GET_FUNDS_FOR_PLAN, new BeanPropertyRowMapper<>(Fund.class), planId);
+    }
+
+
+}

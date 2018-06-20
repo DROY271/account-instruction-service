@@ -1,8 +1,8 @@
 #Common
-* Common - Create scaffold project
-* Common - Create PLAN & FUND tables
-* Common - Create data for plan & fund
-* Common - Plan DAO component - GetPlans
+* **[Complete]** Common - Create scaffold project
+* **[Complete]** Common - Create PLAN & FUND tables
+* **[Complete]** Common - Create data for plan & fund
+* **[Complete]** Common - Plan DAO component - GetPlans
 
 #CreateAccount
 * CreateAccount - Create Account_Instructions, Account_Plans, Plan_Instruction, Fund_Instruction table

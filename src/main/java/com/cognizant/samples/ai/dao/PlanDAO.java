@@ -1,7 +1,7 @@
-package com.cognizant.samples.accountinstructions.dao;
+package com.cognizant.samples.ai.dao;
 
-import com.cognizant.samples.accountinstructions.plan.Fund;
-import com.cognizant.samples.accountinstructions.plan.Plan;
+import com.cognizant.samples.ai.plan.Fund;
+import com.cognizant.samples.ai.plan.Plan;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcOperations;
 

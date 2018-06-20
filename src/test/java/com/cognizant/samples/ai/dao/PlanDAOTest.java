@@ -1,9 +1,9 @@
-package com.cognizant.samples.accountinstructions.dao;
+package com.cognizant.samples.ai.dao;
 
-import com.cognizant.samples.accountinstructions.MockFactory;
-import com.cognizant.samples.accountinstructions.RowDescriptor;
-import com.cognizant.samples.accountinstructions.plan.Fund;
-import com.cognizant.samples.accountinstructions.plan.Plan;
+import com.cognizant.samples.ai.MockFactory;
+import com.cognizant.samples.ai.RowDescriptor;
+import com.cognizant.samples.ai.plan.Fund;
+import com.cognizant.samples.ai.plan.Plan;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,4 +1,4 @@
-package com.cognizant.samples.accountinstructions;
+package com.cognizant.samples.ai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

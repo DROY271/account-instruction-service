@@ -1,4 +1,4 @@
-package com.cognizant.samples.accountinstructions;
+package com.cognizant.samples.ai;
 
 import java.util.ArrayList;
 import java.util.List;

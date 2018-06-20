@@ -1,4 +1,4 @@
-package com.cognizant.samples.accountinstructions;
+package com.cognizant.samples.ai;
 
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

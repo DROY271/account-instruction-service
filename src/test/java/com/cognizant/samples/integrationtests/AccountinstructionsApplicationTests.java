@@ -1,4 +1,4 @@
-package com.cognizant.samples.accountinstructions;
+package com.cognizant.samples.integrationtests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

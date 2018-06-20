@@ -3,10 +3,14 @@ buildscript {
 		springBootVersion = '1.5.14.RELEASE'
 	}
 	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'no.nils:wsdl2java:0.10'
 	}
 }
 
@@ -14,6 +18,7 @@ apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'no.nils.wsdl2java'
 
 group = 'com.cognizant.samples'
 version = '0.0.1-SNAPSHOT'
@@ -27,6 +32,20 @@ repositories {
 ext {
 	springCloudVersion = 'Edgware.SR3'
 }
+
+wsdl2java {
+	wsdlDir = file('src/main/resources/wsdl')
+	generatedWsdlDir = file("$projectDir/generatedsources")
+	wsdlsToGenerate = [
+			['src/main/resources/wsdl/AccountInstructions.wsdl']
+	]
+
+}
+
+wsdl2javaExt {
+	deleteGeneratedSourcesOnClean = true
+}
+
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')

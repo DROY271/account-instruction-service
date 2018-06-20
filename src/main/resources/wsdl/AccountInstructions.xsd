@@ -1,0 +1,10 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://samples.cognizant.com/account-instructions">
+    <complexType name="AddParticipantRequestType">
+        <attribute name="participant-id" type="string"/>
+        <attribute name="name" type="string"/>
+        <attribute name="plan-id" type="string"/>
+    </complexType>
+    <complexType name="StandardResponseType">
+    </complexType>
+</schema>

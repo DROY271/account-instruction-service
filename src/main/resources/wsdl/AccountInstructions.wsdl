@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ws:definitions name="AccountInstructions"
+             targetNamespace="http://samples.cognizant.com/account-instructions"
+             xmlns:ai="http://samples.cognizant.com/account-instructions"
+             xmlns="http://samples.cognizant.com/account-instructions"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:ws="http://schemas.xmlsoap.org/wsdl/">
+    <ws:import namespace="http://samples.cognizant.com/account-instructions" location="AccountInstructions.xsd" />
+
+   <ws:message name="AddParticpantRequestMessage">
+        <ws:part name="AddParticpantRequest" type="AddParticipantRequestType"/>
+    </ws:message>
+    <ws:message name="AddParticpantResponseMessage">
+        <ws:part name="AddParticpantResponse" type="StandardResponseType"/>
+    </ws:message>
+    <ws:portType name="AccountInstructionsPortType">
+        <ws:operation name="AddParticipant">
+            <ws:input message="AddParticpantRequestMessage"/>
+            <ws:output message="AddParticpantResponseMessage"/>
+            <!--ws:fault message="ai:AddParticpantResponseFault"/ -->
+        </ws:operation>
+    </ws:portType>
+
+    <ws:binding name="AccountInstructionsSoapBinding"
+             type="AccountInstructionsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <ws:operation name="AddParticipant">
+            <soap:operation
+                    soapAction="http://samples.cognizant.com/account-instruction/AddParticipant"/>
+            <ws:input>
+                <soap:body use="literal"
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:input>
+            <ws:output>
+                <soap:body use="literal"
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:output>
+            <!--ws:fault>
+                <soap:body use="literal"
+                           namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
+            </ws:fault -->
+        </ws:operation>
+    </ws:binding>
+
+    <ws:service name="AccountInstructionsService">
+        <ws:port name="AccountInstructionsServicePort" binding="AccountInstructionsSoapBinding">
+        </ws:port>
+    </ws:service>
+
+</ws:definitions>

@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = AccountinstructionsApplication.class)
 public class AccountinstructionsApplicationTests {
 
-	@Test
+	@SuppressWarnings("EmptyMethod")
+    @Test
 	public void contextLoads() {
 	}
 

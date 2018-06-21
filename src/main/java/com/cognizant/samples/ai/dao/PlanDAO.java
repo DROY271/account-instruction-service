@@ -16,7 +16,7 @@ public class PlanDAO {
             "INNER JOIN fund f ON pf.fund_id=f.id\n" +
             "WHERE pf.plan_id= ?";
 
-    private JdbcOperations jdbcOperations;
+    private final JdbcOperations jdbcOperations;
 
     PlanDAO(JdbcOperations o) {
         this.jdbcOperations = o;

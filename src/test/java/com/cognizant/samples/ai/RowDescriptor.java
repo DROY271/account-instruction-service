@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RowDescriptor {
 
-    private List<Object[]> columns = new ArrayList<>();
+    private final List<Object[]> columns = new ArrayList<>();
 
     public RowDescriptor column(String name, int type) {
         columns.add(new Object[]{name, type});

@@ -21,19 +21,19 @@ import static org.mockito.Mockito.*;
 
 public class PlanDAOTest {
 
-    private RowDescriptor planRowDescriptor = new RowDescriptor()
+    private final RowDescriptor planRowDescriptor = new RowDescriptor()
             .column("id", Types.VARCHAR)
             .column("name", Types.VARCHAR);
 
-    private RowDescriptor fundRowDescriptor = new RowDescriptor()
+    private final RowDescriptor fundRowDescriptor = new RowDescriptor()
             .column("id", Types.VARCHAR)
             .column("name", Types.VARCHAR);
 
-    private Connection conn = mock(Connection.class);
+    private final Connection conn = mock(Connection.class);
 
-    private PreparedStatement planStmt = mock(PreparedStatement.class);
+    private final PreparedStatement planStmt = mock(PreparedStatement.class);
 
-    private PreparedStatement fundStmt = mock(PreparedStatement.class);
+    private final PreparedStatement fundStmt = mock(PreparedStatement.class);
 
     private PlanDAO dao;
 

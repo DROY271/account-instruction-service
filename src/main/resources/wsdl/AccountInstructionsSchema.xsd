@@ -1,0 +1,20 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://samples.cognizant.com/account-instructions"
+        xmlns:tns="http://samples.cognizant.com/account-instructions"
+        elementFormDefault="qualified">
+    <element name="AddParticipantRequest" type="tns:AddParticipantRequestType"/>
+    <element name="AddParticipantResponse" type="tns:StandardResponseType"/>
+    <complexType name="AddParticipantRequestType">
+        <attribute name="participant-id" type="string"/>
+        <attribute name="name" type="string"/>
+        <attribute name="plan-id" type="string"/>
+    </complexType>
+    <complexType name="StandardResponseType">
+    </complexType>
+    <complexType name="StandardFaultType">
+        <sequence>
+            <element type="string" name="code" minOccurs="1" maxOccurs="1"/>
+            <element type="string" name="message" minOccurs="1" maxOccurs="1"/>
+        </sequence>
+    </complexType>
+</schema>

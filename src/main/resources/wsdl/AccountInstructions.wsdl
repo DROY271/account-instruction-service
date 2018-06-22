@@ -6,19 +6,23 @@
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
              xmlns:ws="http://schemas.xmlsoap.org/wsdl/">
-    <ws:import namespace="http://samples.cognizant.com/account-instructions" location="AccountInstructions.xsd" />
+   <ws:import namespace="http://samples.cognizant.com/account-instructions" location="AccountInstructionsSchema.xsd" />
 
-   <ws:message name="AddParticpantRequestMessage">
-        <ws:part name="AddParticpantRequest" type="AddParticipantRequestType"/>
+   <ws:message name="AddParticipantRequestMessage">
+        <ws:part name="AddParticipantRequest" type="AddParticipantRequest"/>
     </ws:message>
-    <ws:message name="AddParticpantResponseMessage">
-        <ws:part name="AddParticpantResponse" type="StandardResponseType"/>
+    <ws:message name="AddParticipantResponseMessage">
+        <ws:part name="AddParticipantResponse" type="StandardResponseType"/>
+    </ws:message>
+    <ws:message name="AddParticipantResponseFault">
+        <ws:part name="AddParticipantFault" type="StandardFaultType"/>
     </ws:message>
     <ws:portType name="AccountInstructionsPortType">
         <ws:operation name="AddParticipant">
-            <ws:input message="AddParticpantRequestMessage"/>
-            <ws:output message="AddParticpantResponseMessage"/>
-            <!--ws:fault message="ai:AddParticpantResponseFault"/ -->
+            <ws:input message="AddParticipantRequestMessage"/>
+            <ws:output message="AddParticipantResponseMessage"/>
+            <ws:fault name="details" message="AddParticipantResponseFault"/>
+
         </ws:operation>
     </ws:portType>
 
@@ -37,10 +41,10 @@
                 <soap:body use="literal"
                            namespace="http://samples.cognizant.com/account-instructions"/>
             </ws:output>
-            <!--ws:fault>
+            <ws:fault name="details">
                 <soap:body use="literal"
-                           namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
-            </ws:fault -->
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:fault>
         </ws:operation>
     </ws:binding>
 

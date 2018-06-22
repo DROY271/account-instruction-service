@@ -4,10 +4,12 @@ import com.cognizant.samples.ai.plan.Fund;
 import com.cognizant.samples.ai.plan.Plan;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 
+@Component
 public class PlanDAO {
 
     static final String GET_PLAN_WITH_ID = "SELECT * FROM plan WHERE id = ?";

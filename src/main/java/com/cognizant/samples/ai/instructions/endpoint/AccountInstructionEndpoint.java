@@ -30,14 +30,11 @@ public class AccountInstructionEndpoint {
     @PayloadRoot(namespace = NAMESPACE, localPart = "AddParticipantRequest")
     @ResponsePayload
     public JAXBElement<StandardResponseType> addParticipant(@RequestPayload JAXBElement<AddParticipantRequestType> requestElement) throws AccountAlreadyExistsException, ObjectNotFoundException {
-
         AddParticipantRequestType request = requestElement.getValue();
         service.createAccount(request.getParticipantId(), request.getName(), request.getPlanId());
-        return getResponse("AddParticipantResponse", factory.createStandardResponseType());
+        return factory.createAddParticipantResponse(factory.createStandardResponseType());
     }
 
-    private <T> JAXBElement<T> getResponse(String localName, T value) {
-        return new JAXBElement(new QName(NAMESPACE, localName), value.getClass(), value);
-    }
+
 
 }

@@ -23,7 +23,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.*;
 @SpringBootTest(classes=AccountinstructionsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:reset_tables.sql")
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql")
-public class CreateAccountSoapEndpoint {
+public class CreateAccountSoapEndpointTest {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -63,10 +63,21 @@ public class CreateAccountSoapEndpoint {
 
         mockClient
                 .sendRequest(withPayload(requestPayload))
-                .andExpect(noFault())
-                .andExpect(validPayload(xsdSchema));
+                .andExpect(serverOrReceiverFault("Account already exists for participant[Pa123456]"));
 
     }
 
+    @Test
+    public void failWhenPlanNotFound()throws  Exception{
+        String xml = "<AddParticipantRequest xmlns=\"http://samples.cognizant.com/account-instructions\" participant-id=\"Pa123456\" name=\"My Name\" plan-id=\"XYZ\">\n" +
+                "\t\t</AddParticipantRequest>";
+        Source requestPayload = new StringSource(xml);
+
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+                .andExpect(serverOrReceiverFault("No [plan] found with id [XYZ]"));
+
+
+    }
 
 }

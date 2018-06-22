@@ -9,10 +9,10 @@
    <ws:import namespace="http://samples.cognizant.com/account-instructions" location="AccountInstructionsSchema.xsd" />
 
    <ws:message name="AddParticipantRequestMessage">
-        <ws:part name="AddParticipantRequest" type="AddParticipantRequest"/>
+        <ws:part name="AddParticipantRequest" element="AddParticipantRequest"/>
     </ws:message>
     <ws:message name="AddParticipantResponseMessage">
-        <ws:part name="AddParticipantResponse" type="StandardResponseType"/>
+        <ws:part name="AddParticipantResponse" element="AddParticipantResponse"/>
     </ws:message>
     <ws:message name="AddParticipantResponseFault">
         <ws:part name="AddParticipantFault" type="StandardFaultType"/>

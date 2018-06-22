@@ -1,4 +1,4 @@
-package com.cognizant.samples.accountinstructions;
+package com.cognizant.samples.ai;
 
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -37,11 +37,11 @@ public class MockFactory {
 
     public static class ResultSetMocker {
 
-        ResultSet rs = mock(ResultSet.class);
+        final ResultSet rs = mock(ResultSet.class);
 
-        ResultSetMetaData md;
+        final ResultSetMetaData md;
 
-        List<Object[]> columnValues = new LinkedList<>();
+        final List<Object[]> columnValues = new LinkedList<>();
 
         private ResultSetMocker(ResultSetMetaData rmd)  {
             this.md = rmd;
@@ -78,48 +78,69 @@ public class MockFactory {
                 case Types.CHAR:
                     doAnswer(answer).when(rs).getString(columnName);
                     doAnswer(answer).when(rs).getString(index);
+                    doAnswer(answer).when(rs).getObject(index);
                     break;
                 case Types.BOOLEAN:
                 case Types.BIT:
                     doAnswer(answer).when(rs).getBoolean(index);
                     doAnswer(answer).when(rs).getBoolean(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+
                     break;
                 case Types.TINYINT:
                     doAnswer(answer).when(rs).getByte(index);
                     doAnswer(answer).when(rs).getByte(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.SMALLINT:
                     doAnswer(answer).when(rs).getShort(index);
                     doAnswer(answer).when(rs).getShort(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.INTEGER:
                     doAnswer(answer).when(rs).getInt(index);
                     doAnswer(answer).when(rs).getInt(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.BIGINT:
                     doAnswer(answer).when(rs).getLong(index);
                     doAnswer(answer).when(rs).getLong(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.DATE:
                     doAnswer(answer).when(rs).getDate(index);
                     doAnswer(answer).when(rs).getDate(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.TIME:
                     doAnswer(answer).when(rs).getTime(index);
                     doAnswer(answer).when(rs).getTime(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.TIMESTAMP:
                     doAnswer(answer).when(rs).getTimestamp(index);
                     doAnswer(answer).when(rs).getTimestamp(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.REAL:
                     doAnswer(answer).when(rs).getFloat(index);
                     doAnswer(answer).when(rs).getFloat(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 case Types.FLOAT:
                 case Types.DOUBLE:
                     doAnswer(answer).when(rs).getDouble(index);
                     doAnswer(answer).when(rs).getDouble(columnName);
+                    doAnswer(answer).when(rs).getObject(index);
+                    doAnswer(answer).when(rs).getObject(columnName);
                     break;
                 default:
                     throw new IllegalArgumentException(String.format("Cannot handle type %d", type));
@@ -131,7 +152,7 @@ public class MockFactory {
 
     private static class ListAnswer implements Answer<Object> {
 
-        List<Object> values;
+        final List<Object> values;
         int index;
 
         ListAnswer(List<Object> obj) {

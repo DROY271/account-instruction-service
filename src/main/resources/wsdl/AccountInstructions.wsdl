@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ws:definitions name="AccountInstructions"
+             targetNamespace="http://samples.cognizant.com/account-instructions"
+             xmlns:ai="http://samples.cognizant.com/account-instructions"
+             xmlns="http://samples.cognizant.com/account-instructions"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:ws="http://schemas.xmlsoap.org/wsdl/">
+   <ws:import namespace="http://samples.cognizant.com/account-instructions" location="AccountInstructionsSchema.xsd" />
+
+   <ws:message name="AddParticipantRequestMessage">
+        <ws:part name="AddParticipantRequest" element="AddParticipantRequest"/>
+    </ws:message>
+    <ws:message name="AddParticipantResponseMessage">
+        <ws:part name="AddParticipantResponse" element="AddParticipantResponse"/>
+    </ws:message>
+    <ws:message name="AddParticipantResponseFault">
+        <ws:part name="AddParticipantFault" type="StandardFaultType"/>
+    </ws:message>
+    <ws:portType name="AccountInstructionsPortType">
+        <ws:operation name="AddParticipant">
+            <ws:input message="AddParticipantRequestMessage"/>
+            <ws:output message="AddParticipantResponseMessage"/>
+            <ws:fault name="details" message="AddParticipantResponseFault"/>
+
+        </ws:operation>
+    </ws:portType>
+
+    <ws:binding name="AccountInstructionsSoapBinding"
+             type="AccountInstructionsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <ws:operation name="AddParticipant">
+            <soap:operation
+                    soapAction="http://samples.cognizant.com/account-instruction/AddParticipant"/>
+            <ws:input>
+                <soap:body use="literal"
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:input>
+            <ws:output>
+                <soap:body use="literal"
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:output>
+            <ws:fault name="details">
+                <soap:body use="literal"
+                           namespace="http://samples.cognizant.com/account-instructions"/>
+            </ws:fault>
+        </ws:operation>
+    </ws:binding>
+
+    <ws:service name="AccountInstructionsService">
+        <ws:port name="AccountInstructionsServicePort" binding="AccountInstructionsSoapBinding">
+        </ws:port>
+    </ws:service>
+
+</ws:definitions>

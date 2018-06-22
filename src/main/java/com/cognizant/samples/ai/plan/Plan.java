@@ -1,7 +1,6 @@
-package com.cognizant.samples.accountinstructions.plan;
+package com.cognizant.samples.ai.plan;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.Set;
 

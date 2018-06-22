@@ -1,13 +1,15 @@
-package com.cognizant.samples.accountinstructions.dao;
+package com.cognizant.samples.ai.dao;
 
-import com.cognizant.samples.accountinstructions.plan.Fund;
-import com.cognizant.samples.accountinstructions.plan.Plan;
+import com.cognizant.samples.ai.plan.Fund;
+import com.cognizant.samples.ai.plan.Plan;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 
+@Component
 public class PlanDAO {
 
     static final String GET_PLAN_WITH_ID = "SELECT * FROM plan WHERE id = ?";
@@ -16,7 +18,7 @@ public class PlanDAO {
             "INNER JOIN fund f ON pf.fund_id=f.id\n" +
             "WHERE pf.plan_id= ?";
 
-    private JdbcOperations jdbcOperations;
+    private final JdbcOperations jdbcOperations;
 
     PlanDAO(JdbcOperations o) {
         this.jdbcOperations = o;

@@ -1,11 +1,16 @@
 package com.cognizant.samples.ai;
 
+import com.cognizant.samples.ai.instructions.AccountAlreadyExistsException;
+import com.cognizant.samples.ai.instructions.ObjectNotFoundException;
+import com.cognizant.samples.ai.instructions.fault.SOAPFaultCustomizer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
@@ -15,6 +20,8 @@ import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+
+import java.util.Properties;
 
 @SpringBootApplication
 public class AccountinstructionsApplication {
@@ -26,6 +33,19 @@ public class AccountinstructionsApplication {
 	@EnableWs
 	@Configuration
 	public static class SoapWebServiceConfig extends WsConfigurerAdapter {
+
+
+		@Bean("soapFaultAnnotationExceptionResolver")
+        // Override the default annotation exception resolver
+		public SOAPFaultCustomizer soapFaultAnnotationExceptionResolver(Environment env){
+			SOAPFaultCustomizer exceptionResolver = new SOAPFaultCustomizer(env);
+			exceptionResolver.setGenericMessage("${faultString.generic:An error occurred}");
+			Properties p = new Properties();
+			p.setProperty(ObjectNotFoundException.class.getName(), "CLIENT,A required entity was not found");
+            p.setProperty(AccountAlreadyExistsException.class.getName(), "CLIENT,The account is already present");
+			exceptionResolver.setOrder(1);
+			return exceptionResolver;
+		}
 
 		@Bean
 		public ServletRegistrationBean messageDispatcherServlet(ApplicationContext context) {

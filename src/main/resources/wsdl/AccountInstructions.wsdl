@@ -15,7 +15,7 @@
         <ws:part name="AddParticipantResponse" element="AddParticipantResponse"/>
     </ws:message>
     <ws:message name="AddParticipantResponseFault">
-        <ws:part name="AddParticipantFault" type="StandardFaultType"/>
+        <ws:part name="AddParticipantFault" element="AddParticipantFault"/>
     </ws:message>
     <ws:portType name="AccountInstructionsPortType">
         <ws:operation name="AddParticipant">

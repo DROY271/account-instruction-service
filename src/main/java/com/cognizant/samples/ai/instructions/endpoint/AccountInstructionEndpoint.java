@@ -4,6 +4,7 @@ import com.cognizant.samples.account_instructions.AddParticipantRequestType;
 import com.cognizant.samples.account_instructions.AddParticipantResponseFault;
 import com.cognizant.samples.account_instructions.ObjectFactory;
 import com.cognizant.samples.account_instructions.StandardResponseType;
+import com.cognizant.samples.ai.SoapFaultDetailInfo;
 import com.cognizant.samples.ai.instructions.AccountAlreadyExistsException;
 import com.cognizant.samples.ai.instructions.AccountService;
 import com.cognizant.samples.ai.instructions.ObjectNotFoundException;
@@ -29,12 +30,11 @@ public class AccountInstructionEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE, localPart = "AddParticipantRequest")
     @ResponsePayload
+    @SoapFaultDetailInfo(namespace = NAMESPACE, localPart = "AddParticipantFault")
     public JAXBElement<StandardResponseType> addParticipant(@RequestPayload JAXBElement<AddParticipantRequestType> requestElement) throws AccountAlreadyExistsException, ObjectNotFoundException {
         AddParticipantRequestType request = requestElement.getValue();
         service.createAccount(request.getParticipantId(), request.getName(), request.getPlanId());
         return factory.createAddParticipantResponse(factory.createStandardResponseType());
     }
-
-
 
 }

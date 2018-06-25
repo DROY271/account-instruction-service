@@ -63,7 +63,7 @@ public class CreateAccountSoapEndpointTest {
 
         mockClient
                 .sendRequest(withPayload(requestPayload))
-                .andExpect(serverOrReceiverFault("Account already exists for participant[Pa123456]"));
+                .andExpect(clientOrSenderFault("An account for this participant already exists."));
 
     }
 
@@ -75,7 +75,7 @@ public class CreateAccountSoapEndpointTest {
 
         mockClient
                 .sendRequest(withPayload(requestPayload))
-                .andExpect(serverOrReceiverFault("No [plan] found with id [XYZ]"));
+                .andExpect(clientOrSenderFault("Required details were not found. See 'detail' for more information."));
 
 
     }

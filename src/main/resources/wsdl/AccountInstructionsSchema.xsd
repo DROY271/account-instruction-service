@@ -4,6 +4,7 @@
         elementFormDefault="qualified">
     <element name="AddParticipantRequest" type="tns:AddParticipantRequestType"/>
     <element name="AddParticipantResponse" type="tns:StandardResponseType"/>
+    <element name="AddParticipantFault" type="tns:StandardFaultType"/>
     <complexType name="AddParticipantRequestType">
         <attribute name="participant-id" type="string"/>
         <attribute name="name" type="string"/>

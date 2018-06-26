@@ -2,6 +2,9 @@ faultString:
   ObjectNotFoundException: Required details were not found. See 'detail' for more information.
   AccountAlreadyExistsException: An account for this participant already exists.
   GENERIC: An error occurred during process. Please see 'detail' for more information.
+
+errors:
+  general: An error occurred during processing.
 ---
 spring.profiles: default
 eureka:
